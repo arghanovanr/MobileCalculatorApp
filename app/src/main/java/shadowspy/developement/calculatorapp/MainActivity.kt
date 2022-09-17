@@ -9,6 +9,7 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    //TextValue
     private var txtNumberView : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +37,48 @@ class MainActivity : AppCompatActivity() {
         val buttonDivide : Button = findViewById(R.id.buttonDivide)
         val buttonSubmit : Button = findViewById(R.id.buttonSubmit)
 
-        fun addChar(view: View){
-
+        //OnClickListener
+        buttonNumber0.setOnClickListener(){
+            addChar(buttonNumber0)
         }
+        buttonNumber1.setOnClickListener(){
+            addChar(buttonNumber1)
+        }
+        buttonNumber2.setOnClickListener(){
+            addChar(buttonNumber2)
+        }
+        buttonNumber3.setOnClickListener(){
+            addChar(buttonNumber3)
+        }
+        buttonNumber4.setOnClickListener(){
+            addChar(buttonNumber4)
+        }
+        buttonNumber5.setOnClickListener(){
+            addChar(buttonNumber5)
+        }
+        buttonNumber6.setOnClickListener(){
+            addChar(buttonNumber6)
+        }
+        buttonNumber7.setOnClickListener(){
+            addChar(buttonNumber7)
+        }
+        buttonNumber8.setOnClickListener(){
+            addChar(buttonNumber8)
+        }
+        buttonNumber9.setOnClickListener(){
+            addChar(buttonNumber9)
+        }
+        buttonClear.setOnClickListener(){
+            clearTxt()
+        }
+    }
+
+    //Function
+    private fun addChar(view : View){
+        txtNumberView?.append((view as Button).text)
+    }
+
+    private fun clearTxt(){
+        txtNumberView?.text = ""
     }
 }
