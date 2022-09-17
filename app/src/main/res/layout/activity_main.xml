@@ -10,7 +10,7 @@
     >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textNumberView"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:padding="12dp"
@@ -60,7 +60,7 @@
         </Button>
 
         <Button
-            android:id="@+id/buttonPlus"
+            android:id="@+id/buttonAdding"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -112,7 +112,7 @@
         </Button>
 
         <Button
-            android:id="@+id/buttonMinus"
+            android:id="@+id/buttonSubstraction"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
