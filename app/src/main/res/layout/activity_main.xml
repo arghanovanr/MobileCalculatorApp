@@ -16,7 +16,6 @@
         android:padding="12dp"
         android:textSize="36sp"
         android:gravity="end|bottom"
-        android:text="@string/txtNumber"
         />
 
     <LinearLayout
@@ -186,8 +185,19 @@
             android:id="@+id/button0"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:text="@string/_0"
+            android:layout_margin="2dp"
+            android:backgroundTint="@color/green"
+            >
+        </Button>
+
+        <Button
+            android:id="@+id/buttonDecimal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/Decimal"
             android:layout_margin="2dp"
             android:backgroundTint="@color/green"
             >

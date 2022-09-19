@@ -17,4 +17,5 @@
     <string name="clear">CLR</string>
     <string name="Divide">/</string>
     <string name="Submit">=</string>
+    <string name="Decimal">.</string>
 </resources>

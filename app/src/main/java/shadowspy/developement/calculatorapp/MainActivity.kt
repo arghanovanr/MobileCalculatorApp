@@ -12,6 +12,10 @@ class MainActivity : AppCompatActivity() {
     //TextValue
     private var txtNumberView : TextView? = null
 
+    //LastNumberChecker
+    var lastNumeric = false
+    var lastDot = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         val buttonNumber7 : Button = findViewById(R.id.button7)
         val buttonNumber8 : Button = findViewById(R.id.button8)
         val buttonNumber9 : Button = findViewById(R.id.button9)
+        val buttonDecimal : Button = findViewById(R.id.buttonDecimal)
         val buttonClear   : Button = findViewById(R.id.buttonClear)
         val buttonAdding  : Button = findViewById(R.id.buttonAdding)
         val buttonSubstraction : Button = findViewById(R.id.buttonSubstraction)
@@ -37,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val buttonDivide : Button = findViewById(R.id.buttonDivide)
         val buttonSubmit : Button = findViewById(R.id.buttonSubmit)
 
-        //OnClickListener
+        //OnClick for numeric button
         buttonNumber0.setOnClickListener(){
             addChar(buttonNumber0)
         }
@@ -68,17 +73,73 @@ class MainActivity : AppCompatActivity() {
         buttonNumber9.setOnClickListener(){
             addChar(buttonNumber9)
         }
+
+        //OnClick for Clearing button
         buttonClear.setOnClickListener(){
             clearTxt()
+        }
+
+        //OnClick for Decimal button
+        buttonDecimal.setOnClickListener(){
+            addDecimal()
+        }
+
+        //OnClick for Operator button
+        buttonAdding.setOnClickListener(){
+            onOperator(buttonAdding)
+        }
+        buttonDivide.setOnClickListener(){
+            onOperator(buttonDivide)
+        }
+        buttonMultiplication.setOnClickListener(){
+            onOperator(buttonMultiplication)
+        }
+        buttonSubstraction.setOnClickListener(){
+            onOperator(buttonSubstraction)
         }
     }
 
     //Function
     private fun addChar(view : View){
         txtNumberView?.append((view as Button).text)
+        lastNumeric = true
+        lastDot = false
     }
 
     private fun clearTxt(){
         txtNumberView?.text = ""
+        lastNumeric = false
+        lastDot = false
     }
+
+    private fun addDecimal(){
+        if(lastNumeric && !lastDot){
+            txtNumberView?.append(".")
+            lastNumeric = false
+            lastDot = true
+        }
+    }
+
+    private fun onOperator(view : View ){
+        txtNumberView?.text?.let {
+            if(lastNumeric && !checkOperator(it.toString())){
+                txtNumberView?.append((view as Button).text)
+                lastNumeric = false
+                lastDot = false
+            }
+        }
+
+    }
+
+    private fun checkOperator (value :String): Boolean{
+        return if(value.startsWith("-")){
+            false
+        }else{
+            value.contains("-") ||
+            value.contains("+") ||
+            value.contains("*") ||
+            value.contains("/")
+        }
+    }
+
 }
