@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import java.lang.ArithmeticException
 
 
 class MainActivity : AppCompatActivity() {
@@ -129,6 +130,37 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun onEqual(view : View){
+        if(lastNumeric){
+            var tvValue = txtNumberView?.text.toString()
+
+            var prefix = ""
+            try {
+
+                if(tvValue.startsWith("-")){
+                    prefix = "-"
+                    tvValue = tvValue.substring(1)
+                }
+                if(tvValue.contains("-")){
+                    val arrayValue = tvValue.split("-")
+
+                    var firstVar  = arrayValue[0]
+                    var secondVar = arrayValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        firstVar = prefix + firstVar;
+                    }
+
+                    txtNumberView?.text = (firstVar.toDouble() - secondVar.toDouble()).toString()
+                }
+
+
+            }catch (e: ArithmeticException){
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun checkOperator (value :String): Boolean{
