@@ -98,6 +98,11 @@ class MainActivity : AppCompatActivity() {
         buttonSubstraction.setOnClickListener(){
             onOperator(buttonSubstraction)
         }
+
+        //OnClick for Submit button
+        buttonSubmit.setOnClickListener(){
+            onEqual(buttonSubmit)
+        }
     }
 
     //Function
@@ -143,7 +148,7 @@ class MainActivity : AppCompatActivity() {
                     prefix = "-"
                     tvValue = tvValue.substring(1)
                 }
-                if(tvValue.contains("-")){
+                if(tvValue.contains("-")){   // Check for substraction operation
                     val arrayValue = tvValue.split("-")
 
                     var firstVar  = arrayValue[0]
@@ -153,7 +158,40 @@ class MainActivity : AppCompatActivity() {
                         firstVar = prefix + firstVar;
                     }
 
-                    txtNumberView?.text = (firstVar.toDouble() - secondVar.toDouble()).toString()
+                    txtNumberView?.text = dotRemover((firstVar.toDouble() / secondVar.toDouble()).toString())
+                }else if (tvValue.contains("+")){   // Check for Adding operation
+                    val arrayValue = tvValue.split("+")
+
+                    var firstVar  = arrayValue[0]
+                    var secondVar = arrayValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        firstVar = prefix + firstVar;
+                    }
+
+                    txtNumberView?.text = dotRemover((firstVar.toDouble() / secondVar.toDouble()).toString())
+                }else if (tvValue.contains("/")){   // Check for Divide operation
+                    val arrayValue = tvValue.split("/")
+
+                    var firstVar  = arrayValue[0]
+                    var secondVar = arrayValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        firstVar = prefix + firstVar;
+                    }
+
+                    txtNumberView?.text = dotRemover((firstVar.toDouble() / secondVar.toDouble()).toString())
+                } else if (tvValue.contains("*")){   // Check for Multiplication operation
+                    val arrayValue = tvValue.split("*")
+
+                    var firstVar  = arrayValue[0]
+                    var secondVar = arrayValue[1]
+
+                    if(prefix.isNotEmpty()){
+                        firstVar = prefix + firstVar;
+                    }
+
+                    txtNumberView?.text = dotRemover((firstVar.toDouble() * secondVar.toDouble()).toString())
                 }
 
 
@@ -161,6 +199,14 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun dotRemover (result :String ) : String {
+        var value = result
+        if(result.contains(".0")){
+            value = result.substring(0, result.length-2)
+        }
+        return value
     }
 
     private fun checkOperator (value :String): Boolean{
