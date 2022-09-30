@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
                         firstVar = prefix + firstVar;
                     }
 
-                    txtNumberView?.text = dotRemover((firstVar.toDouble() / secondVar.toDouble()).toString())
+                    txtNumberView?.text = dotRemover((firstVar.toDouble() - secondVar.toDouble()).toString())
                 }else if (tvValue.contains("+")){   // Check for Adding operation
                     val arrayValue = tvValue.split("+")
 
@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
                         firstVar = prefix + firstVar;
                     }
 
-                    txtNumberView?.text = dotRemover((firstVar.toDouble() / secondVar.toDouble()).toString())
+                    txtNumberView?.text = dotRemover((firstVar.toDouble() + secondVar.toDouble()).toString())
                 }else if (tvValue.contains("/")){   // Check for Divide operation
                     val arrayValue = tvValue.split("/")
 
